@@ -1,0 +1,12 @@
+create table Account(
+    id number GENERATED Always AS IDENTITY(start with 1 increment by 1 nocache) primary key not null,
+    username NVARCHAR2(50),
+    userpwd NVARCHAR2(50)
+);
+
+Insert Into Account(username, userpwd) Values('mary','test123');
+Insert Into Account(username, userpwd) Values('john','123test');
+
+commit;
+
+select * from account;
