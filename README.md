@@ -10,6 +10,7 @@
 若是修改設定檔的原有內容，可以直接提出
 
 命名規範：
+
 A：程式碼
 1. tw.group4下面一層新增_座號_的package
 2. _座號_下面再依功能自行定義package區分
@@ -18,4 +19,4 @@ A：程式碼
 
 B：網址
 1. Requestmapping和return一律前面加上座號/
-2. 若該網址需要啟動hibernate，網址後一律加上.ctrl
+2. 若該網址request需要啟動hibernate，網址後一律加上.ctrl
