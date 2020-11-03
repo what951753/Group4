@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
-//下面annotaion把"result"識別字串升級成session等級變數
+//銝annotaion���"result"霅摮葡����ession蝑��
 @SessionAttributes(names= {"result"})
 public class ActionController {
 	
@@ -20,7 +20,19 @@ public class ActionController {
 	@RequestMapping(path="/myaction.controller")
 	public String processAction2(Model m) {
 		m.addAttribute("result","wonderful hour");
-		return "resultPage";
+		return "/35/NewFile";
+	}
+	
+	@RequestMapping(path="/myaction.controller1")
+	public String processAction1(Model m) {
+		m.addAttribute("result","wonderful hour");
+		return "New";
+	}
+	
+	@RequestMapping(path="/myaction.controller2")
+	public String processAction3(Model m) {
+		m.addAttribute("result","wonderful hour");
+		return "memberPage";
 	}
 	
 }

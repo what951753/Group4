@@ -55,11 +55,11 @@
 	<!-- </bean> -->
 
 	<!-- 設定靜態資源路徑 -->
-	<!-- <mvc:resources location="/WEB-INF/pages/images/" mapping="/images/**"/> -->
+	<!-- <mvc:resources location="/WEB-INF/pages/images/" mapping="/images/**"/> 
 	<mvc:resources location="/WEB-INF/pages/css/"
 		mapping="/css/**" />
 	<mvc:resources location="/WEB-INF/pages/js/"
-		mapping="/js/**" />
+		mapping="/js/**" />-->
 	<!-- 設定多的虛擬網址路徑 -->
 	<mvc:view-controller path="/myformPage"
 		view-name="redirect:myformPage.controller" />

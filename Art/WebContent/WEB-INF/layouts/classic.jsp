@@ -4,7 +4,9 @@
 <title><tiles:getAsString name="title" /></title>
 </head>
  
-<body>
+<body id="page-top">
+
+<div id="wrapper">
     <table width="100%">
         <tr>
             <td colspan="2">
@@ -25,5 +27,6 @@
             </td>
         </tr>
     </table>
+    </div>
 </body>
 </html>
