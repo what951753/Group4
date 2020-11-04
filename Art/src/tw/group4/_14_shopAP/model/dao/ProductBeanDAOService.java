@@ -3,17 +3,26 @@ package tw.group4._14_shopAP.model.dao;
 import java.util.List;
 
 import org.hibernate.Session;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import tw.group4._14_shopAP.model.ARTProduct;
 
-
+@Service("ProductBeanDAOService")
 public class ProductBeanDAOService {
 	private ProductBeanDAOImp pDAO;
 	
-	
-	public ProductBeanDAOService(Session session) {
-		pDAO = new ProductBeanDAOImp(session);
+	public ProductBeanDAOService() {
+		
 	}
+
+	@Autowired
+	public ProductBeanDAOService(ProductBeanDAOImp pDAO) {
+		this.pDAO = pDAO;
+	}
+//	public ProductBeanDAOService(Session session) {
+//		pDAO = new ProductBeanDAOImp(session);
+//	}
 	
 
 	public ARTProduct insert(ARTProduct pd) {
@@ -29,6 +38,10 @@ public class ProductBeanDAOService {
 	public  List<ARTProduct> selectAll(int pageNo){
 		return pDAO.selectAll(pageNo);
 		
+	}
+	
+	public List<ARTProduct> selectNoPage() {
+		return pDAO.selectNoPage();
 	}
 	
 

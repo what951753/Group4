@@ -20,7 +20,7 @@ public class ActionController {
 	@RequestMapping(path="/myaction.controller")
 	public String processAction2(Model m) {
 		m.addAttribute("result","wonderful hour");
-		return "/35/NewFile";
+		return "TableTest";
 	}
 	
 	@RequestMapping(path="/myaction.controller1")
