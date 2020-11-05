@@ -44,20 +44,29 @@
 	<definition name="14_CRUDPage" extends="base.definition">
 		<put-attribute name="title" value="member" />
 		<put-attribute name="body"
-			value="/WEB-INF/pages/14/14_CRUDPage2.jsp" />
+			value="/WEB-INF/pages/14/14_CRUDPage.jsp" />
 	</definition>
+	
 	<!-- 14_CREAT Page -->
 	<definition name="14_CreatePage" extends="base.definition">
 		<put-attribute name="title" value="member" />
 		<put-attribute name="body"
 			value="/WEB-INF/pages/14/14_Create.jsp" />
 	</definition>
+	
 		<!-- 14_UPDATE Page -->
 	<definition name="14_UpdatePage" extends="base.definition">
 		<put-attribute name="title" value="member" />
 		<put-attribute name="body"
 			value="/WEB-INF/pages/14/14_Update.jsp" />
 	</definition>
+	
+	<definition name="14_showOneProduct" extends="base.definition">
+	<put-attribute name="title" value="member" />
+	<put-attribute name="body"
+			value="/WEB-INF/pages/14/14_showOneProduct.jsp" />
+	</definition>
+	
 	<!-- 14_UPDATE Page -->
 	<definition name="TableTest" extends="base.definition">
 		<put-attribute name="title" value="member" />

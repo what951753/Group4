@@ -86,7 +86,13 @@ public class SpringMVCJavaConfig implements WebMvcConfigurer {
 //	新增靜態資源對應網址
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-    	registry.addResourceHandler("images/**").addResourceLocations("/WEB-INF/pages/images/");
+//    	registry.addResourceHandler("images/**","css/**","js/**","jquery/**","jquery-easing/**")
+//    			.addResourceLocations("/WEB-INF/pages/images/","/WEB-INF/pages/css/","/WEB-INF/pages/vendor/bootstrap/js/","/WEB-INF/pages/vendor/jquery/","/WEB-INF/pages/vendor/jquery-easing/");
+
+    	registry.addResourceHandler("images/**","css/**","vendor/**")
+		.addResourceLocations("/WEB-INF/pages/images/","/WEB-INF/pages/css/","/WEB-INF/pages/vendor/");
+    
+    
     }
     
 //  設定multipartResolver

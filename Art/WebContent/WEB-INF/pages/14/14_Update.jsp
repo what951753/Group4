@@ -22,6 +22,13 @@
  	<p>數量<span style="color: crimson;font-size:larger">*</span>：
  	<input type="number" name="APNUM" required="required" value="${ap.productNum}" ></p>
  	</div>
+ 	<div>
+ 	<p>描述</p>
+ 	<textarea name="APDES" class="cls" id="" cols="100" rows="10" >
+ 	${ap.productDes}
+	</textarea>
+ 	</div>
+
  	
     <div><input type="submit" name="check" value="完成修改"></div>
     </form>

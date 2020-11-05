@@ -4,7 +4,7 @@
 <div>
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2020</span>
+            <span>Copyright &copy; 得藝的一天 2020</span>
           </div>
         </div>
    </div>

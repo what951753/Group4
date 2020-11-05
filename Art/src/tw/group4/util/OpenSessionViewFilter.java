@@ -16,7 +16,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-@WebFilter("/*")
+@WebFilter("*.ctrl")
 public class OpenSessionViewFilter implements Filter {
 	
 	private WebApplicationContext context;

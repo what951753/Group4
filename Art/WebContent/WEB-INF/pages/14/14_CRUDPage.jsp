@@ -8,19 +8,16 @@
 <title>Insert title here</title>
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- <link rel="stylesheet" type="text/css" -->
+<!-- 	href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css"> -->
+
 <style>
-.head {
+.head, tfoot {
 	text-align: center;
 }
 </style>
+
+<!-- 此處 JS 為 sweet alert 使用範例 -->
 <script type="text/javascript">
 
 function reconfirmOrder(pid,page){
@@ -51,6 +48,9 @@ function reconfirmOrder(pid,page){
 	  });
 };
 
+
+
+
 </script>
 
 </head>
@@ -58,13 +58,13 @@ function reconfirmOrder(pid,page){
 	<div class="container">
 		<h1 style="margin-top: 50px; text-align: center;">洋行後台</h1>
 
-		<button type="button" class="btn btn-info btn-sm" value="新增商品"
-			onclick="location.href='<c:url value='/14/Create.ctrl' />'">新增</button>
+		<!-- 		<button type="button" class="btn btn-info btn-sm" value="新增商品" -->
+		<%-- 			onclick="location.href='<c:url value='/14/createProduct.ctrl' />'">新增</button> --%>
 
 
-		<button type="button" class="btn btn-info btn-sm" value="全部商品"
-			onclick="location.href='<c:url value='/CRUD.controller' />'">前往新天地</button>
-		
+		<!-- 		<button type="button" class="btn btn-info btn-sm" value="全部商品" -->
+		<%-- 			onclick="location.href='<c:url value='/CRUD.controller' />'">前往新天地</button> --%>
+
 
 		<div style='text-align: center;'>
 
@@ -77,6 +77,7 @@ function reconfirmOrder(pid,page){
 			</c:if>
 
 		</div>
+
 		<div style='text-align: center;'>
 			<c:if test='${not empty SuccessMessage}'>
 				<h3>
@@ -87,70 +88,110 @@ function reconfirmOrder(pid,page){
 			</c:if>
 		</div>
 
-		<br>
-		<table class="table table-striped" style="height: 100px;">
-			<tr class="head">
-				<th scope="col">貨號</th>
-				<th scope="col">商品名稱</th>
-				<th scope="col">售價</th>
-				<th scope="col">庫存</th>
-				<th scope="col" colspan="3">功能</th>
-			</tr>
-			<c:forEach var="searchAP" varStatus="stat" items="${pList}">
-				<FORM>
-					<tbody>
-						<tr>
+		<!-- Begin Page Content -->
+		<div class="container-fluid">
 
-							<td class="align-middle" scope="row" style="text-align: center;">${searchAP.productId}</td>
-							<td class="align-middle">${searchAP.productTitle}</td>
-							<td class="align-middle" style="text-align: center;">${searchAP.productPrice}</td>
-							<td class="align-middle" style="text-align: center;">${searchAP.productNum}</td>
-							<td class="align-middle"><button type="button"
-									class="btn btn-info btn-sm" value="全部商品"
-									onclick="location.href='<c:url value='/14/updateProduct.ctrl?productid=${searchAP.productId}' />'">修改</button></td>
-							<td><Input class="btn btn-info btn-sm" type="button"
-								name="delete" value="刪除"
-								onclick="reconfirmOrder(${searchAP.productId},${pageNo})"></td>
-						</tr>
-					</tbody>
+			<!-- Page Heading -->
+			<!-- 			<h1 class="h3 mb-2 text-gray-800">商品編輯頁面</h1> -->
+			<p class="mb-4">
+				本處預計使用 DataTables 生成下表，等到學完 AJAX 之後應可以自動使用此插件進行排序與頁碼和每頁顯示筆數等功能。<br>
+				若想先學習如何使用，請訪問 <a target="_blank" href="https://datatables.net">official
+					DataTables documentation</a>.
+			</p>
 
-				</FORM>
-			</c:forEach>
-		</table>
-	</div>
+			<!-- DataTales -->
+			<div class="card shadow mb-4">
+				<div class="card-header py-3">
+					<h6 class="m-0 font-weight-bold text-primary">得意洋行商品一覽</h6>
+				</div>
+				<div class="card-body">
+					<div class="table-responsive">
 
-	<div style="margin-left: 500px;">第 ${pageNo} 頁 // 共 ${totalPages}
-		頁</div>
-	<div class="container">
-		<div class="row justify-content-md-center">
+						<table class="table table-bordered" id="dataTable" width="100%"
+							cellspacing="0">
+							<thead>
+								<tr class="head">
+									<th scope="col">貨號</th>
+									<th scope="col">商品名稱</th>
+									<th scope="col">售價</th>
+									<th scope="col">庫存</th>
+									<th scope="col">功能</th>
+								</tr>
+							</thead>
+							<tfoot>
+								<tr>
+									<th scope="col">貨號</th>
+									<th scope="col">商品名稱</th>
+									<th scope="col">售價</th>
+									<th scope="col">庫存</th>
+									<th scope="col">功能</th>
+								</tr>
+							</tfoot>
+
+							<c:forEach var="searchAP" varStatus="stat" items="${pList}">
+								<FORM>
+									<tbody>
+										<tr>
+
+											<td class="align-middle" scope="row"
+												style="text-align: center;">${searchAP.productId}</td>
+											<td class="align-middle">${searchAP.productTitle}</td>
+											<td class="align-middle" style="text-align: center;">${searchAP.productPrice}</td>
+											<td class="align-middle" style="text-align: center;">${searchAP.productNum}</td>
+											<td class="align-middle"><button type="button"
+													class="btn btn-info btn-sm" value="全部商品"
+													onclick="location.href='<c:url value='/14/updateProduct.ctrl?productid=${searchAP.productId}' />'">修改</button>
+												<Input class="btn btn-info btn-sm" type="button"
+												name="delete" value="刪除"
+												onclick="reconfirmOrder(${searchAP.productId},${pageNo})">
+												<button type="button" class="btn btn-info btn-sm" value="詳情"
+													onclick="location.href='<c:url value='/14/showOneProduct.ctrl?productid=${searchAP.productId}' />'">詳情</button>
+											</td>
+
+										</tr>
+									</tbody>
+
+								</FORM>
+							</c:forEach>
+						</table>
+					</div>
+
+					<div style="text-align: center;">第 ${pageNo} 頁 //
+						共${totalPages} 頁</div>
+					<div class="container">
+						<div class="row justify-content-md-center">
 
 
 
-			<nav aria-label="Page navigation example" style="margin: auto;">
-				<ul class="pagination" style="margin: auto;">
-					<li class="page-item" style="margin: auto;"><c:if
-							test="${pageNo > 1}">
-							<a class="page-link"
-								href="<c:url value='/14/CRUD.ctrl?pageNo=${pageNo-1}' />"
-								aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-							</a>
-						</c:if></li>
-					<c:forEach var='page' items='${pages}'>
-						<li class="page-item"><a class="page-link"
-							href="<c:url value='/14/CRUD.ctrl?pageNo=${page}' />">${page}</a></li>
-					</c:forEach>
-					<c:if test="${pageNo != totalPages}">
-						<li class="page-item"><a class="page-link"
-							href="<c:url value='/14/CRUD.ctrl?pageNo=${pageNo+1}' />"
-							aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-						</a></li>
-					</c:if>
-				</ul>
-			</nav>
-		</div>
-	</div>
+							<nav aria-label="Page navigation example" style="margin: auto;">
+								<ul class="pagination" style="margin: auto;">
+									<li class="page-item" style="margin: auto;"><c:if
+											test="${pageNo > 1}">
+											<a class="page-link"
+												href="<c:url value='/14/CRUD.ctrl?pageNo=${pageNo-1}' />"
+												aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+											</a>
+										</c:if></li>
+									<c:forEach var='page' items='${pages}'>
+										<li class="page-item"><a class="page-link"
+											href="<c:url value='/14/CRUD.ctrl?pageNo=${page}' />">${page}</a></li>
+									</c:forEach>
+									<c:if test="${pageNo != totalPages}">
+										<li class="page-item"><a class="page-link"
+											href="<c:url value='/14/CRUD.ctrl?pageNo=${pageNo+1}' />"
+											aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+										</a></li>
+									</c:if>
+								</ul>
+							</nav>
+						</div>
+					</div>
 
-
-
+					<script type="text/javascript" charset="utf8"
+						src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+					<script
+						src="<c:url value='/vendor/datatables/jquery.dataTables.min.js' />"></script>
+					<script
+						src="<c:url value='/vendor/datatables/dataTables.bootstrap4.min.js' />"></script>
 </body>
 </html>

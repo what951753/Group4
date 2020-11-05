@@ -137,16 +137,21 @@ public class CRUDController {
 	
 	@RequestMapping(path = "/14/createProduct.ctrl", method = RequestMethod.GET)
 	private String processCreate(Model m, @RequestParam(name = "pageNo" ,required = false) Integer pageNo,
-			@RequestParam(name = "APNUM") String apNum,@RequestParam(name = "APPRICE") String apPrice, @RequestParam(name = "APTITLE") String apTitle) {
+			@RequestParam(name = "APNUM") String apNum,@RequestParam(name = "APPRICE") String apPrice, 
+			@RequestParam(name = "APTITLE") String apTitle, @RequestParam(name = "APTYPE",required = false) String apType,
+			@RequestParam(name = "APDES",required = false) String apDes) {
 
 //		SessionFactory factory = HibernateUtil.getFactory();
 //		Session csession = factory.getCurrentSession();
-
+		
+		
 		int num = Integer.parseInt(apNum);
 		ARTProduct pd = new ARTProduct();
 		pd.setProductTitle(apTitle);
 		pd.setProductPrice(apPrice);
 		pd.setProductNum(num);
+		pd.setProductType(apType);
+		pd.setProductDes(apDes);
 
 		pDaoservice.insert(pd);
 		
@@ -156,9 +161,19 @@ public class CRUDController {
 
 	}
 	
+	@RequestMapping(path="/14/showOneProduct.ctrl")
+	private String processDetial(Model m, @RequestParam(name = "pageNo" ,required = false) Integer pageNo,
+			@RequestParam(name = "productid") String apNum) {
+		ARTProduct ap = pDaoservice.select(apNum);
+		m.addAttribute("ap",ap);
+		return "14_showOneProduct";
+		
+		
+	}
+	
+	
 	@RequestMapping(path="/14/Create.ctrl")
 	public String processAction2(Model m) {
-		m.addAttribute("result","wonderful hour");
 		return "14_CreatePage";
 	}
 	
