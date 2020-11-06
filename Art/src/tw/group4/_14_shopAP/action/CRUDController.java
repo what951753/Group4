@@ -177,4 +177,10 @@ public class CRUDController {
 		return "14_CreatePage";
 	}
 	
+	@RequestMapping(path="/14/Table")
+	public String processActionT(Model m) {
+		return "TableTest";
+	}
+	
+	
 }

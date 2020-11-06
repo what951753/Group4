@@ -17,6 +17,12 @@
 }
 </style>
 
+<script>
+ $(document).ready( function () {
+     $('#productTable').DataTable();
+} );
+</script>
+
 <!-- 此處 JS 為 sweet alert 使用範例 -->
 <script type="text/javascript">
 
@@ -55,7 +61,7 @@ function reconfirmOrder(pid,page){
 
 </head>
 <body>
-	<div class="container">
+<!-- 	<div class="container"> -->
 		<h1 style="margin-top: 50px; text-align: center;">洋行後台</h1>
 
 		<!-- 		<button type="button" class="btn btn-info btn-sm" value="新增商品" -->
@@ -107,7 +113,7 @@ function reconfirmOrder(pid,page){
 				<div class="card-body">
 					<div class="table-responsive">
 
-						<table class="table table-bordered" id="dataTable" width="100%"
+						<table class="table table-bordered" id="productTable" width="100%"
 							cellspacing="0">
 							<thead>
 								<tr class="head">
@@ -128,9 +134,9 @@ function reconfirmOrder(pid,page){
 								</tr>
 							</tfoot>
 
-							<c:forEach var="searchAP" varStatus="stat" items="${pList}">
-								<FORM>
 									<tbody>
+								<FORM>
+							<c:forEach var="searchAP" varStatus="stat" items="${pList}">
 										<tr>
 
 											<td class="align-middle" scope="row"
@@ -149,10 +155,10 @@ function reconfirmOrder(pid,page){
 											</td>
 
 										</tr>
+							</c:forEach>
+								</FORM>
 									</tbody>
 
-								</FORM>
-							</c:forEach>
 						</table>
 					</div>
 
