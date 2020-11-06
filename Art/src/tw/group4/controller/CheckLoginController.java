@@ -23,7 +23,7 @@ public class CheckLoginController {
 	
 	@RequestMapping(path = "/checkLoginEntry.controller", method = RequestMethod.GET)
 	public String processCheckLoginEntryPage() {
-		return "35/LoginSystem";
+		return "LoginSystem";
 	}
 	
 	@RequestMapping(path = "/checkLogin.controller", method = RequestMethod.POST)
@@ -40,7 +40,7 @@ public class CheckLoginController {
 		}
 		
 		if(errors!=null && !errors.isEmpty()) {
-			return "35/LoginSystem";
+			return "LoginSystem";
 		}
 		new Account("j","j");
 		
@@ -57,6 +57,6 @@ public class CheckLoginController {
 		
 		m.addAttribute("msg", "Please enter correct username or password.");
 		
-		return "35/LoginSystem"; 
+		return "LoginSystem"; 
 	}
 }

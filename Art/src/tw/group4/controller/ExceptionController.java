@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class ExceptionController {
 	
 	@RequestMapping(path="/exception.controller", method = RequestMethod.GET)
-	public void peocessAction() throws Exception {
+	public void processAction() throws Exception {
 		throw new Exception();
 	}
 
