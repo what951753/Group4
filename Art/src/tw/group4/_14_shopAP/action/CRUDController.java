@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 
 import tw.group4._14_shopAP.model.ARTProduct;
 import tw.group4._14_shopAP.model.dao.ProductBeanDAOService;
-import tw.group4.util.HibernateUtil;
 
 
 @Controller

@@ -37,29 +37,32 @@
 		<h5>企業會員功能列表</h5>
 	</div>
 
-	
+
 
 	<!-- Nav Item - Utilities Collapse Menu -->
 	<li class="nav-item"><a class="nav-link collapsed" href="#"
 		data-toggle="collapse" data-target="#collapseUtilities"
-		aria-expanded="true" aria-controls="collapseUtilities"> 
-			<i class="fas fa-users"></i> <span>企業會員功能</span>
+		aria-expanded="true" aria-controls="collapseUtilities"> <i
+			class="fas fa-users"></i> <span>企業會員功能</span>
 	</a>
 		<div id="collapseUtilities" class="collapse"
 			aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
 			<div class="bg-white py-2 collapse-inner rounded">
 				<h6 class="collapse-header">藝文活動服務:</h6>
-				<a class="collapse-item" href="#">包場場地一覽</a> <a
-					class="collapse-item" href="#">場地租借</a> <a
-					class="collapse-item" href="#">提供藝文活動場地</a>
-				<a class="collapse-item" href="#">Other</a>
+				<a class="collapse-item"
+					href="<c:url value='/tilesNavbar/35/cms' />">包場場地一覽</a> <a
+					class="collapse-item" href="<c:url value='/tilesNavbar/35/geo' />">最近場地查詢</a>
+				<a class="collapse-item"
+					href="<c:url value='/tilesNavbar/35/geo' />">租借藝文活動場地</a> <a
+					class="collapse-item" href="<c:url value='/tilesNavbar/35/csr' />">企業社會責任</a>
 			</div>
 		</div></li>
-		
-		<!-- Nav Item - Pages Collapse Menu -->
+
+	<!-- Nav Item - Pages Collapse Menu -->
 	<li class="nav-item"><a class="nav-link collapsed" href="#"
 		data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
-		aria-controls="collapseTwo"> <i class="fas fa-hand-holding-usd"></i> <span>贊助專區</span>
+		aria-controls="collapseTwo"> <i class="fas fa-hand-holding-usd"></i>
+			<span>贊助專區</span>
 	</a>
 		<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
 			data-parent="#accordionSidebar">
@@ -90,21 +93,19 @@
 			<div class="bg-white py-2 collapse-inner rounded">
 				<h6 class="collapse-header">我是買家:</h6>
 				<a class="collapse-item" href="#">票務購物車</a> <a class="collapse-item"
-					href="#">購票紀錄</a> <a class="collapse-item" href="#">猜我喜歡</a>
+					href="#">購票紀錄</a> 
 				<div class="collapse-divider"></div>
 				<h6 class="collapse-header">我是賣家:</h6>
 				<a class="collapse-item" href="#">票卷上架</a> <a class="collapse-item"
 					href="#">票卷下架</a> <a class="collapse-item" href="#">修改商品內容</a>
 			</div>
-		</div>
-		
-		</li>
-		
+		</div></li>
+
 	<!-- 洋行相關 -->
 	<li class="nav-item"><a class="nav-link collapsed" href="#"
 		data-toggle="collapse" data-target="#collapsePages2"
-		aria-expanded="true" aria-controls="collapsePages"> 
-			<i class="fas fa-gifts"></i> <span>商城服務</span>
+		aria-expanded="true" aria-controls="collapsePages"> <i
+			class="fas fa-gifts"></i> <span>商城服務</span>
 	</a>
 		<div id="collapsePages2" class="collapse"
 			aria-labelledby="headingPages" data-parent="#accordionSidebar">
@@ -114,77 +115,75 @@
 					href="#">購物紀錄</a> <a class="collapse-item" href="#">猜我喜歡</a>
 				<div class="collapse-divider"></div>
 				<h6 class="collapse-header">我是賣家:</h6>
-				<a class="collapse-item" href="<c:url value='/14/Create.ctrl' />">商品上架</a> <a class="collapse-item"
-					href="<c:url value='/14/CRUD.ctrl' />">商品下架</a> <a class="collapse-item" href="<c:url value='/myaction.controller' />">修改商品內容</a>
+				<a class="collapse-item" href="<c:url value='/14/Create.ctrl' />">商品上架</a>
+				<a class="collapse-item" href="<c:url value='/14/CRUD.ctrl' />">商品下架</a>
+				<a class="collapse-item"
+					href="<c:url value='/myaction.controller' />">修改商品內容</a>
 			</div>
-		</div>
-		
-		</li>
-		
-	<!-- 店家相關 -->	
-		<li class="nav-item"><a class="nav-link collapsed" href="#"
+		</div></li>
+
+	<!-- 店家相關 -->
+	<li class="nav-item"><a class="nav-link collapsed" href="#"
 		data-toggle="collapse" data-target="#collapsePages3"
-		aria-expanded="true" aria-controls="collapsePages"> 
-			<i class="fas fa-store"></i> <span>店家服務一覽</span>
+		aria-expanded="true" aria-controls="collapsePages"> <i
+			class="fas fa-store"></i> <span>店家服務一覽</span>
 	</a>
 		<div id="collapsePages3" class="collapse"
 			aria-labelledby="headingPages" data-parent="#accordionSidebar">
 			<div class="bg-white py-2 collapse-inner rounded">
-				<h6 class="collapse-header">我找過的店家:</h6>
-				<a class="collapse-item" href="#">這個那個</a> <a class="collapse-item"
-					href="#">紀錄</a> <a class="collapse-item" href="#">猜我喜歡</a>
+				<h6 class="collapse-header">店家:</h6>
+				<a class="collapse-item" href="#">新增</a> <a class="collapse-item"
+					href="#">修改</a><a class="collapse-item"
+					href="#">查詢</a><a class="collapse-item"
+					href="#">刪除</a>
 				<div class="collapse-divider"></div>
-				<h6 class="collapse-header">申請當店家:</h6>
-				<a class="collapse-item" href="#">商品上架</a> <a class="collapse-item"
-					href="#">商品下架</a> <a class="collapse-item" href="#">修改商品內容</a>
+				<h6 class="collapse-header">預約店家:</h6>
+				<a class="collapse-item" href="#">預約設定</a>
+				<a class="collapse-item" href="#">新增</a> <a class="collapse-item"
+					href="#">修改</a> <a class="collapse-item" href="#">查詢</a>
+					<a class="collapse-item" href="#">刪除</a>
 			</div>
-		</div>
-		
-		</li>
-		
-		
-		<!-- 吟遊詩人 -->	
-		<li class="nav-item"><a class="nav-link collapsed" href="#"
+		</div></li>
+
+
+	<!-- 吟遊詩人 -->
+	<li class="nav-item"><a class="nav-link collapsed" href="#"
 		data-toggle="collapse" data-target="#collapsePages4"
-		aria-expanded="true" aria-controls="collapsePages"> 
-			<i class="fas fa-person-booth"></i> <span>街頭藝人服務</span>
+		aria-expanded="true" aria-controls="collapsePages"> <i
+			class="fas fa-person-booth"></i> <span>街頭藝人服務</span>
 	</a>
 		<div id="collapsePages4" class="collapse"
 			aria-labelledby="headingPages" data-parent="#accordionSidebar">
 			<div class="bg-white py-2 collapse-inner rounded">
 				<h6 class="collapse-header">尋找藝人:</h6>
-				<a class="collapse-item" href="#">這個那個</a> <a class="collapse-item"
-					href="#">這個那個</a> <a class="collapse-item" href="#">這個那個</a>
+				<a class="collapse-item" href="#">分類</a> <a class="collapse-item"
+					href="#">樂器</a> 
 				<div class="collapse-divider"></div>
 				<h6 class="collapse-header">我是藝人:</h6>
 				<a class="collapse-item" href="#">藝人上架</a> <a class="collapse-item"
-					href="#">藝人下架</a> <a class="collapse-item" href="#">修改藝人資料</a>
+					href="#">藝人下架</a>
 			</div>
-		</div>
-		
-		</li>
-		
-		<!-- 課程功能 -->	
-		<li class="nav-item"><a class="nav-link collapsed" href="#"
+		</div></li>
+
+	<!-- 課程功能 -->
+	<li class="nav-item"><a class="nav-link collapsed" href="#"
 		data-toggle="collapse" data-target="#collapsePages5"
-		aria-expanded="true" aria-controls="collapsePages"> 
-			<i class="fas fa-chalkboard-teacher"></i> <span>藝術課程服務</span>
+		aria-expanded="true" aria-controls="collapsePages"> <i
+			class="fas fa-chalkboard-teacher"></i> <span>藝術課程服務</span>
 	</a>
 		<div id="collapsePages5" class="collapse"
 			aria-labelledby="headingPages" data-parent="#accordionSidebar">
 			<div class="bg-white py-2 collapse-inner rounded">
 				<h6 class="collapse-header">我要上課:</h6>
-				<a class="collapse-item" href="#">這個那個</a> <a class="collapse-item"
-					href="#">這個那個</a> <a class="collapse-item" href="#">這個那個</a>
+				<a class="collapse-item" href="#">已購買課程</a> <a class="collapse-item"
+					href="#">修改已購買課程</a> <a class="collapse-item" href="#">刪除已購買課程</a>
 				<div class="collapse-divider"></div>
 				<h6 class="collapse-header">我要開課:</h6>
 				<a class="collapse-item" href="#">課程上架</a> <a class="collapse-item"
 					href="#">課程下架</a> <a class="collapse-item" href="#">修改課程資料</a>
 			</div>
-		</div>
-		
-		</li>
-		
+		</div></li>
+
 
 	<!-- Nav Item - Charts -->
 	<li class="nav-item"><a class="nav-link" href="#"> <i

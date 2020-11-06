@@ -1,11 +1,22 @@
 package tw.group4.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import org.springframework.stereotype.Component;
 
+@Entity
+@Table(name="House")
 @Component
 public class HouseBean {
 	
+	@Id
+	@Column(name = "HOUSEID")
 	private int houseid;
+	
+	@Column(name = "HOUSENAME")
 	private String housename;
 	
 	public HouseBean() {

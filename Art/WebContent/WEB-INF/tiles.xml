@@ -46,32 +46,115 @@
 		<put-attribute name="body"
 			value="/WEB-INF/pages/14/14_CRUDPage.jsp" />
 	</definition>
-	
+
 	<!-- 14_CREAT Page -->
 	<definition name="14_CreatePage" extends="base.definition">
 		<put-attribute name="title" value="member" />
 		<put-attribute name="body"
 			value="/WEB-INF/pages/14/14_Create.jsp" />
 	</definition>
-	
-		<!-- 14_UPDATE Page -->
+
+	<!-- 14_UPDATE Page -->
 	<definition name="14_UpdatePage" extends="base.definition">
 		<put-attribute name="title" value="member" />
 		<put-attribute name="body"
 			value="/WEB-INF/pages/14/14_Update.jsp" />
 	</definition>
-	
-	<definition name="14_showOneProduct" extends="base.definition">
-	<put-attribute name="title" value="member" />
-	<put-attribute name="body"
+
+	<definition name="14_showOneProduct"
+		extends="base.definition">
+		<put-attribute name="title" value="member" />
+		<put-attribute name="body"
 			value="/WEB-INF/pages/14/14_showOneProduct.jsp" />
 	</definition>
-	
+
 	<!-- 14_UPDATE Page -->
 	<definition name="TableTest" extends="base.definition">
 		<put-attribute name="title" value="member" />
 		<put-attribute name="body"
 			value="/WEB-INF/pages/14/Table.jsp" />
+	</definition>
+
+	<!-- 35 csr csr (entry) -->
+	<definition name="35/csr/csr" extends="base.definition">
+		<put-attribute name="title" value="csr" />
+		<put-attribute name="body"
+			value="/WEB-INF/pages/35/csr/csr.jsp" />
+	</definition>
+
+	<!-- 35 geo recomAct (entry) -->
+	<definition name="35/geo/recomAct" extends="base.definition">
+		<put-attribute name="title" value="geo" />
+		<put-attribute name="body"
+			value="/WEB-INF/pages/35/geo/recomAct.jsp" />
+	</definition>
+
+	<!-- 35 cms eventSpaceList (entry) -->
+	<definition name="35/cms/eventSpaceList"
+		extends="base.definition">
+		<put-attribute name="title" value="cms" />
+		<put-attribute name="body"
+			value="/WEB-INF/pages/35/cms/eventSpaceList.jsp" />
+	</definition>
+
+	<!-- 35 cms addData -->
+	<definition name="35/cms/addData" extends="base.definition">
+		<put-attribute name="title" value="cms" />
+		<put-attribute name="body"
+			value="/WEB-INF/pages/35/cms/addData.jsp" />
+	</definition>
+
+	<!-- 35 cms addDataResult -->
+	<definition name="35/cms/addDataResult"
+		extends="base.definition">
+		<put-attribute name="title" value="cms" />
+		<put-attribute name="body"
+			value="/WEB-INF/pages/35/cms/addDataResult.jsp" />
+	</definition>
+
+	<!-- 35 cms eventSpaceSelectResult -->
+	<definition name="35/cms/eventSpaceSelectResult"
+		extends="base.definition">
+		<put-attribute name="title" value="cms" />
+		<put-attribute name="body"
+			value="/WEB-INF/pages/35/cms/eventSpaceSelectResult.jsp" />
+	</definition>
+
+	<!-- 35 cms editEventSpace -->
+	<definition name="35/cms/editEventSpace"
+		extends="base.definition">
+		<put-attribute name="title" value="cms" />
+		<put-attribute name="body"
+			value="/WEB-INF/pages/35/cms/editEventSpace.jsp" />
+	</definition>
+
+	<!-- 35 cms editEventSpaceResult -->
+	<definition name="35/cms/editEventSpaceResult"
+		extends="base.definition">
+		<put-attribute name="title" value="cms" />
+		<put-attribute name="body"
+			value="/WEB-INF/pages/35/cms/editEventSpaceResult.jsp" />
+	</definition>
+
+	<!-- 35 csr listActs -->
+	<definition name="35/csr/listActs" extends="base.definition">
+		<put-attribute name="title" value="csr" />
+		<put-attribute name="body"
+			value="/WEB-INF/pages/35/csr/listActs.jsp" />
+	</definition>
+
+	<!-- 35 csr showKids -->
+	<definition name="35/csr/showKids" extends="base.definition">
+		<put-attribute name="title" value="csr" />
+		<put-attribute name="body"
+			value="/WEB-INF/pages/35/csr/showKids.jsp" />
+	</definition>
+
+	<!-- 35 geo nearAct -->
+	<definition name="35/geo/nearAct" extends="base.definition">
+		<put-attribute name="title" value="geo" />
+		<put-attribute name="body"
+			value="/WEB-INF/pages/35/geo/nearAct.jsp" />
 	</definition>
 
 
