@@ -4,158 +4,198 @@
       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 <tiles-definitions>
 
-	<!-- Base Define -->
-	<definition name="base.definition"
-		template="/WEB-INF/layouts/classic.jsp">
-		<put-attribute name="title" value="" />
-		<put-attribute name="header"
-			value="/WEB-INF/basefragments/_header2.jsp" />
-		<put-attribute name="menu"
-			value="/WEB-INF/basefragments/_menu2.jsp" />
-		<put-attribute name="body" value="" />
-		<put-attribute name="footer"
-			value="/WEB-INF/basefragments/_footer.jsp" />
-		<put-attribute name="demo"
-			value="/WEB-INF/bodyfragments/_members.jsp" />
-	</definition>
-
-	<!-- Home Page -->
-	<definition name="homePage" extends="base.definition">
-		<put-attribute name="title" value="Home Page" />
+	<!-- 六種視角的homePage路徑設定 -->
+	<definition name="homePageA" extends="visitor.definition">
+		<put-attribute name="title" value="homePage" />
 		<put-attribute name="body"
 			value="/WEB-INF/bodyfragments/_home.jsp" />
 	</definition>
-
-	<!-- ContactUs Page -->
-	<definition name="contactusPage" extends="base.definition">
-		<put-attribute name="title" value="Contact Us" />
+	<definition name="homePageB" extends="user.definition">
+		<put-attribute name="title" value="homePage" />
 		<put-attribute name="body"
-			value="/WEB-INF/bodyfragments/_contactus.jsp" />
+			value="/WEB-INF/bodyfragments/_home.jsp" />
+	</definition>
+	<definition name="homePageC" extends="admin.definition">
+		<put-attribute name="title" value="homePage" />
+		<put-attribute name="body"
+			value="/WEB-INF/bodyfragments/_home.jsp" />
+	</definition>
+	<definition name="homePageD" extends="userMemberArea.definition">
+		<put-attribute name="title" value="homePage" />
+		<put-attribute name="body"
+			value="/WEB-INF/bodyfragments/_home.jsp" />
+	</definition>
+	<definition name="homePageE" extends="adminMemberArea.definition">
+		<put-attribute name="title" value="homePage" />
+		<put-attribute name="body"
+			value="/WEB-INF/bodyfragments/_home.jsp" />
+	</definition>
+	<definition name="homePageF" extends="adminBackstage.definition">
+		<put-attribute name="title" value="homePage" />
+		<put-attribute name="body"
+			value="/WEB-INF/bodyfragments/_home.jsp" />
+	</definition>
+	
+	<!-- A: visitor Define -->
+	<definition name="visitor.definition"
+		template="/WEB-INF/layouts/classic1.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header"
+			value="/WEB-INF/basefragments/top_basicA.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer"
+			value="/WEB-INF/basefragments/_footer.jsp" />
+	</definition>
+	
+	<!-- B: user Define -->
+	<definition name="user.definition"
+		template="/WEB-INF/layouts/classic1.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header"
+			value="/WEB-INF/basefragments/top_basicB.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer"
+			value="/WEB-INF/basefragments/_footer.jsp" />
+	</definition>
+	
+	<!-- C: admin Define -->
+	<definition name="admin.definition"
+		template="/WEB-INF/layouts/classic1.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header"
+			value="/WEB-INF/basefragments/top_basicC.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer"
+			value="/WEB-INF/basefragments/_footer.jsp" />
+	</definition>
+	
+	<!-- D: userMemberArea Define -->
+	<definition name="userMemberArea.definition"
+		template="/WEB-INF/layouts/classic1.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header"
+			value="/WEB-INF/basefragments/top_memberDisD.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer"
+			value="/WEB-INF/basefragments/_footer.jsp" />
+	</definition>
+	
+	<!-- E: adminMemberArea Define -->
+	<definition name="adminMemberArea.definition"
+		template="/WEB-INF/layouts/classic1.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header"
+			value="/WEB-INF/basefragments/top_memberDisE.jsp" />
+		<put-attribute name="menu"
+			value="/WEB-INF/basefragments/_menuE.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer"
+			value="/WEB-INF/basefragments/_footer.jsp" />
+	</definition>
+	
+	<!-- F: adminBackstage Define -->
+	<definition name="adminBackstage.definition"
+		template="/WEB-INF/layouts/classic2.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header"
+			value="/WEB-INF/basefragments/header_backstageF.jsp" />
+		<put-attribute name="menu"
+			value="/WEB-INF/basefragments/menu_backstageF.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer"
+			value="/WEB-INF/basefragments/_footer.jsp" />
+	</definition>
+	
+	<!-- 一層/visitor -->
+	<definition name="a/*/*" extends="visitor.definition">
+		<put-attribute name="title1" value="title1.{1}.{2}" />
+		<put-attribute name="body"
+			value="/WEB-INF/pages/{1}/{2}.jsp" />
 	</definition>
 
-	<!-- member Page -->
-	<definition name="memberPage" extends="base.definition">
-		<put-attribute name="title" value="member" />
+	<!-- 二層/visitor -->
+	<definition name="a/*/*/*" extends="visitor.definition">
+		<put-attribute name="title2" value="title2.{1}.{2}.{3}" />
 		<put-attribute name="body"
-			value="/WEB-INF/pages/35/LoginSystem.jsp" />
+			value="/WEB-INF/pages/{1}/{2}/{3}.jsp" />
+	</definition>
+	
+	<!-- 一層/user -->
+	<definition name="b/*/*" extends="user.definition">
+		<put-attribute name="title1" value="title1.{1}.{2}" />
+		<put-attribute name="body"
+			value="/WEB-INF/pages/{1}/{2}.jsp" />
 	</definition>
 
-	<!-- 14_CRUD Page -->
-	<definition name="14_CRUDPage" extends="base.definition">
-		<put-attribute name="title" value="member" />
+	<!-- 二層/user -->
+	<definition name="b/*/*/*" extends="user.definition">
+		<put-attribute name="title2" value="title2.{1}.{2}.{3}" />
 		<put-attribute name="body"
-			value="/WEB-INF/pages/14/14_CRUDPage.jsp" />
+			value="/WEB-INF/pages/{1}/{2}/{3}.jsp" />
+	</definition>
+	
+	<!-- 一層/admin -->
+	<definition name="c/*/*" extends="admin.definition">
+		<put-attribute name="title1" value="title1.{1}.{2}" />
+		<put-attribute name="body"
+			value="/WEB-INF/pages/{1}/{2}.jsp" />
 	</definition>
 
-	<!-- 14_CREAT Page -->
-	<definition name="14_CreatePage" extends="base.definition">
-		<put-attribute name="title" value="member" />
+	<!-- 二層/admin -->
+	<definition name="c/*/*/*" extends="admin.definition">
+		<put-attribute name="title2" value="title2.{1}.{2}.{3}" />
 		<put-attribute name="body"
-			value="/WEB-INF/pages/14/14_Create.jsp" />
+			value="/WEB-INF/pages/{1}/{2}/{3}.jsp" />
+	</definition>
+	
+	<!-- 一層/userMemberArea -->
+	<definition name="d/*/*" extends="userMemberArea.definition">
+		<put-attribute name="title1" value="title1.{1}.{2}" />
+		<put-attribute name="body"
+			value="/WEB-INF/pages/{1}/{2}.jsp" />
 	</definition>
 
-	<!-- 14_UPDATE Page -->
-	<definition name="14_UpdatePage" extends="base.definition">
-		<put-attribute name="title" value="member" />
+	<!-- 二層/userMemberArea -->
+	<definition name="d/*/*/*" extends="userMemberArea.definition">
+		<put-attribute name="title2" value="title2.{1}.{2}.{3}" />
 		<put-attribute name="body"
-			value="/WEB-INF/pages/14/14_Update.jsp" />
+			value="/WEB-INF/pages/{1}/{2}/{3}.jsp" />
+	</definition>
+	
+	<!-- 一層/adminMemberArea -->
+	<definition name="e/*/*" extends="adminMemberArea.definition">
+		<put-attribute name="title1" value="title1.{1}.{2}" />
+		<put-attribute name="body"
+			value="/WEB-INF/pages/{1}/{2}.jsp" />
 	</definition>
 
-	<definition name="14_showOneProduct"
-		extends="base.definition">
-		<put-attribute name="title" value="member" />
+	<!-- 二層/adminMemberArea -->
+	<definition name="e/*/*/*" extends="adminMemberArea.definition">
+		<put-attribute name="title2" value="title2.{1}.{2}.{3}" />
 		<put-attribute name="body"
-			value="/WEB-INF/pages/14/14_showOneProduct.jsp" />
+			value="/WEB-INF/pages/{1}/{2}/{3}.jsp" />
+	</definition>
+	
+	<!-- 一層/adminBackstage -->
+	<definition name="f/*/*" extends="adminBackstage.definition">
+		<put-attribute name="title1" value="title1.{1}.{2}" />
+		<put-attribute name="body"
+			value="/WEB-INF/pages/{1}/{2}.jsp" />
 	</definition>
 
-	<!-- 14_UPDATE Page -->
-	<definition name="TableTest" extends="base.definition">
-		<put-attribute name="title" value="member" />
+	<!-- 二層/adminBackstage -->
+	<definition name="f/*/*/*" extends="adminBackstage.definition">
+		<put-attribute name="title2" value="title2.{1}.{2}.{3}" />
 		<put-attribute name="body"
-			value="/WEB-INF/pages/14/Table.jsp" />
+			value="/WEB-INF/pages/{1}/{2}/{3}.jsp" />
 	</definition>
 
-	<!-- 35 csr csr (entry) -->
-	<definition name="35/csr/csr" extends="base.definition">
-		<put-attribute name="title" value="csr" />
-		<put-attribute name="body"
-			value="/WEB-INF/pages/35/csr/csr.jsp" />
-	</definition>
-
-	<!-- 35 geo recomAct (entry) -->
-	<definition name="35/geo/recomAct" extends="base.definition">
-		<put-attribute name="title" value="geo" />
-		<put-attribute name="body"
-			value="/WEB-INF/pages/35/geo/recomAct.jsp" />
-	</definition>
-
-	<!-- 35 cms eventSpaceList (entry) -->
-	<definition name="35/cms/eventSpaceList"
-		extends="base.definition">
-		<put-attribute name="title" value="cms" />
-		<put-attribute name="body"
-			value="/WEB-INF/pages/35/cms/eventSpaceList.jsp" />
-	</definition>
-
-	<!-- 35 cms addData -->
-	<definition name="35/cms/addData" extends="base.definition">
-		<put-attribute name="title" value="cms" />
-		<put-attribute name="body"
-			value="/WEB-INF/pages/35/cms/addData.jsp" />
-	</definition>
-
-	<!-- 35 cms addDataResult -->
-	<definition name="35/cms/addDataResult"
-		extends="base.definition">
-		<put-attribute name="title" value="cms" />
-		<put-attribute name="body"
-			value="/WEB-INF/pages/35/cms/addDataResult.jsp" />
-	</definition>
-
-	<!-- 35 cms eventSpaceSelectResult -->
-	<definition name="35/cms/eventSpaceSelectResult"
-		extends="base.definition">
-		<put-attribute name="title" value="cms" />
-		<put-attribute name="body"
-			value="/WEB-INF/pages/35/cms/eventSpaceSelectResult.jsp" />
-	</definition>
-
-	<!-- 35 cms editEventSpace -->
-	<definition name="35/cms/editEventSpace"
-		extends="base.definition">
-		<put-attribute name="title" value="cms" />
-		<put-attribute name="body"
-			value="/WEB-INF/pages/35/cms/editEventSpace.jsp" />
-	</definition>
-
-	<!-- 35 cms editEventSpaceResult -->
-	<definition name="35/cms/editEventSpaceResult"
-		extends="base.definition">
-		<put-attribute name="title" value="cms" />
-		<put-attribute name="body"
-			value="/WEB-INF/pages/35/cms/editEventSpaceResult.jsp" />
-	</definition>
-
-	<!-- 35 csr listActs -->
-	<definition name="35/csr/listActs" extends="base.definition">
-		<put-attribute name="title" value="csr" />
-		<put-attribute name="body"
-			value="/WEB-INF/pages/35/csr/listActs.jsp" />
-	</definition>
-
-	<!-- 35 csr showKids -->
-	<definition name="35/csr/showKids" extends="base.definition">
-		<put-attribute name="title" value="csr" />
-		<put-attribute name="body"
-			value="/WEB-INF/pages/35/csr/showKids.jsp" />
-	</definition>
-
-	<!-- 35 geo nearAct -->
-	<definition name="35/geo/nearAct" extends="base.definition">
-		<put-attribute name="title" value="geo" />
-		<put-attribute name="body"
-			value="/WEB-INF/pages/35/geo/nearAct.jsp" />
-	</definition>
-
+	<!-- 三層，啟用會發生stackoverflow錯誤 -->
+<!-- 	<definition name="*/*/*/*" extends="base.definition"> -->
+<!-- 	<put-attribute name="title3" -->
+<!-- 	value="title3.{1}.{2}.{3}.{4}" /> -->
+<!-- 	<put-attribute name="body" -->
+<!-- 	value="/WEB-INF/pages/{1}/{2}/{3}/{4}.jsp" /> -->
+<!-- 	</definition> -->
 
 </tiles-definitions>

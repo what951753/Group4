@@ -8,20 +8,14 @@
 <title>Insert title here</title>
 
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-<!-- <link rel="stylesheet" type="text/css" -->
-<!-- 	href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css"> -->
+<link rel="stylesheet" type="text/css"
+	href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
 
 <style>
 .head, tfoot {
 	text-align: center;
 }
 </style>
-
-<script>
- $(document).ready( function () {
-     $('#productTable').DataTable();
-} );
-</script>
 
 <!-- 此處 JS 為 sweet alert 使用範例 -->
 <script type="text/javascript">
@@ -30,8 +24,8 @@ function reconfirmOrder(pid,page){
 	swal("提示","確認刪除？", "warning",{
 	    buttons: {
 	      danger: {
-	          text: "是",
-	          visible: true
+	          text: "是"
+// 	          ,visible: true
 	        },
 	      "不是": true,
 //	      "是": true
@@ -42,7 +36,7 @@ function reconfirmOrder(pid,page){
 	    switch (value) {
 	      case "danger":
 	    	swal("提示","商品已刪除", "success")
-	    	setTimeout(function(){window.location="<c:url value='/14/deleteProduct.ctrl?productid="+pid+"&pageNo="+page+"' />" ; },2000);
+	    	setTimeout(function(){window.location="<c:url value='/14/deleteProduct.ctrl?productId="+pid+"'/>" ; },2000);
 	        break;
 	      case "不是":
 	        swal("提示","商品未刪除", "info");
@@ -61,7 +55,7 @@ function reconfirmOrder(pid,page){
 
 </head>
 <body>
-<!-- 	<div class="container"> -->
+	<div class="container">
 		<h1 style="margin-top: 50px; text-align: center;">洋行後台</h1>
 
 		<!-- 		<button type="button" class="btn btn-info btn-sm" value="新增商品" -->
@@ -113,7 +107,7 @@ function reconfirmOrder(pid,page){
 				<div class="card-body">
 					<div class="table-responsive">
 
-						<table class="table table-bordered" id="productTable" width="100%"
+						<table class="table table-bordered" id="dataTable" width="100%"
 							cellspacing="0">
 							<thead>
 								<tr class="head">
@@ -134,9 +128,9 @@ function reconfirmOrder(pid,page){
 								</tr>
 							</tfoot>
 
-									<tbody>
-								<FORM>
-							<c:forEach var="searchAP" varStatus="stat" items="${pList}">
+							<tbody>
+								<c:forEach var="searchAP" varStatus="stat" items="${pList}">
+<!-- 									<FORM> -->
 										<tr>
 
 											<td class="align-middle" scope="row"
@@ -151,53 +145,56 @@ function reconfirmOrder(pid,page){
 												name="delete" value="刪除"
 												onclick="reconfirmOrder(${searchAP.productId},${pageNo})">
 												<button type="button" class="btn btn-info btn-sm" value="詳情"
-													onclick="location.href='<c:url value='/14/showOneProduct.ctrl?productid=${searchAP.productId}' />'">詳情</button>
+													onclick="location.href='<c:url value='/14/showOneProductCMS.ctrl?productid=${searchAP.productId}' />'">詳情</button>
 											</td>
 
 										</tr>
-							</c:forEach>
-								</FORM>
-									</tbody>
+<!-- 									</FORM> -->
+								</c:forEach>
+							</tbody>
 
 						</table>
 					</div>
 
-					<div style="text-align: center;">第 ${pageNo} 頁 //
-						共${totalPages} 頁</div>
-					<div class="container">
-						<div class="row justify-content-md-center">
+					<%-- 					<div style="text-align: center;">第 ${pageNo} 頁 // --%>
+					<%-- 						共${totalPages} 頁</div> --%>
+					<!-- 					<div class="container"> -->
+					<!-- 						<div class="row justify-content-md-center"> -->
 
 
 
-							<nav aria-label="Page navigation example" style="margin: auto;">
-								<ul class="pagination" style="margin: auto;">
-									<li class="page-item" style="margin: auto;"><c:if
-											test="${pageNo > 1}">
-											<a class="page-link"
-												href="<c:url value='/14/CRUD.ctrl?pageNo=${pageNo-1}' />"
-												aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-											</a>
-										</c:if></li>
-									<c:forEach var='page' items='${pages}'>
-										<li class="page-item"><a class="page-link"
-											href="<c:url value='/14/CRUD.ctrl?pageNo=${page}' />">${page}</a></li>
-									</c:forEach>
-									<c:if test="${pageNo != totalPages}">
-										<li class="page-item"><a class="page-link"
-											href="<c:url value='/14/CRUD.ctrl?pageNo=${pageNo+1}' />"
-											aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-										</a></li>
-									</c:if>
-								</ul>
-							</nav>
-						</div>
-					</div>
+					<!-- 							<nav aria-label="Page navigation example" style="margin: auto;"> -->
+					<!-- 								<ul class="pagination" style="margin: auto;"> -->
+					<%-- 									<li class="page-item" style="margin: auto;"><c:if --%>
+					<%-- 											test="${pageNo > 1}"> --%>
+					<!-- 											<a class="page-link" -->
+					<%-- 												href="<c:url value='/14/CRUD.ctrl?pageNo=${pageNo-1}' />" --%>
+					<!-- 												aria-label="Previous"> <span aria-hidden="true">&laquo;</span> -->
+					<!-- 											</a> -->
+					<%-- 										</c:if></li> --%>
+					<%-- 									<c:forEach var='page' items='${pages}'> --%>
+					<!-- 										<li class="page-item"><a class="page-link" -->
+					<%-- 											href="<c:url value='/14/CRUD.ctrl?pageNo=${page}' />">${page}</a></li> --%>
+					<%-- 									</c:forEach> --%>
+					<%-- 									<c:if test="${pageNo != totalPages}"> --%>
+					<!-- 										<li class="page-item"><a class="page-link" -->
+					<%-- 											href="<c:url value='/14/CRUD.ctrl?pageNo=${pageNo+1}' />" --%>
+					<!-- 											aria-label="Next"> <span aria-hidden="true">&raquo;</span> -->
+					<!-- 										</a></li> -->
+					<%-- 									</c:if> --%>
+					<!-- 								</ul> -->
+					<!-- 							</nav> -->
+					<!-- 						</div> -->
+					<!-- 					</div> -->
 
-					<script type="text/javascript" charset="utf8"
-						src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
-					<script
-						src="<c:url value='/vendor/datatables/jquery.dataTables.min.js' />"></script>
-					<script
-						src="<c:url value='/vendor/datatables/dataTables.bootstrap4.min.js' />"></script>
+
+					<script>
+$(document).ready( function () {
+    $('#dataTable').DataTable({
+
+    	
+    } );
+} );
+</script>
 </body>
 </html>

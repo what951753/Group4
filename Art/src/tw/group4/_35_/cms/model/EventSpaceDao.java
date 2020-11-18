@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class EventSpaceDao {
+public class EventSpaceDao implements InterfaceEventSpaceDao {
 	
 	private SessionFactory sessionFactory;
 	
@@ -20,6 +20,7 @@ public class EventSpaceDao {
 	}
 	
 	//依場地名稱查詢
+	@Override
 	public List<EventSpace> select(String name) {
 		Session session = sessionFactory.getCurrentSession();
 		
@@ -30,6 +31,7 @@ public class EventSpaceDao {
 	}
 	
 	//查詢全部場地
+	@Override
 	public List<EventSpace> selectAll() {
 		Session session = sessionFactory.getCurrentSession();
 		
@@ -39,6 +41,7 @@ public class EventSpaceDao {
 	}
 	
 	//新增。存在就不新增，不存在才新增。
+	@Override
 	public EventSpace insert(EventSpace bean) {
 		Session session = sessionFactory.getCurrentSession();
 		
@@ -55,6 +58,7 @@ public class EventSpaceDao {
 	
 	//更新。傳入bean.getId對應的資料，確認資料庫有這筆後。
 	//detach搜尋到的物件再次進行更新
+	@Override
 	public boolean update(EventSpace bean) {
 		Session session = sessionFactory.getCurrentSession();
 		
@@ -72,6 +76,7 @@ public class EventSpaceDao {
 	}
 	
 	//刪除。傳入name有對應資料才刪除。
+	@Override
 	public boolean delete(String name) {
 		Session session = sessionFactory.getCurrentSession();
 		

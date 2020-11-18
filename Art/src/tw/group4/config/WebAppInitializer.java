@@ -9,6 +9,7 @@ import javax.servlet.ServletRegistration;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
 import org.springframework.web.filter.CharacterEncodingFilter;
+import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.DispatcherServlet;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
@@ -34,15 +35,18 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 		return new String[] {"/"};
 	}
 	
-//	設定request編碼的Filter
-//	此寫法當web.xml和java config同時設定，會失去作用，要用方法二filter
+//	設定request response編碼的Filter
+//	設定form method="post"轉"put"和"delete"的Filter
+//	設定request response編碼的Filter當web.xml和java config同時設定，會失去作用，要用註冊filter方法設定
+//	目前不明原因失效，先註解掉
 	@Override
 	protected Filter[] getServletFilters() {
-		CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();
-		encodingFilter.setEncoding("UTF-8");
-		encodingFilter.setForceEncoding(true);
-	    
-		return new Filter[] {encodingFilter};
+//		CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();
+//		encodingFilter.setEncoding("UTF-8");
+//		encodingFilter.setForceEncoding(true);
+	    HiddenHttpMethodFilter hiddenHttpMethodFilter = new HiddenHttpMethodFilter();
+		
+		return new Filter[] {hiddenHttpMethodFilter};
 	}
 	
 	@Override
@@ -54,20 +58,21 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
 		mvc.setLoadOnStartup(1);
 		mvc.addMapping("/");
 
-//		設定啟動SessionFactory的過濾器
-//		可在此設定過濾器映射路徑
-		FilterRegistration.Dynamic filterRegistration  = servletContext.addFilter("OpenSessionViewFilter", OpenSessionViewFilter.class);
-		//filterRegistration.setInitParameter("sessionFactoryBeanName", "sessionFactory");
-		filterRegistration.addMappingForUrlPatterns(null, true, "*.ctrl");
-		filterRegistration.addMappingForServletNames(null, true, "mvc");
+//		設定啟動SessionFactory之路徑的過濾器
+//		在此設定過濾器映射路徑
+		FilterRegistration.Dynamic sessionFilterRegistration  = servletContext.addFilter("OpenSessionViewFilter", OpenSessionViewFilter.class);
+//		sessionFilterRegistration.setInitParameter("sessionFactoryBeanName", "sessionFactory");
+		sessionFilterRegistration.addMappingForUrlPatterns(null, true, "*.ctrl");
+//		加下面這行會害上面那行映射路徑設定失效
+//		sessionFilterRegistration.addMappingForServletNames(null, true, "mvc");
 		
 //		編碼過濾器註冊
 //		這是設定request編碼的方法二filter，設定context啟動時做什麼事
-//		如果SpringWebMvc設定與xml衝突時會導致前面方法定義的過濾器失效，要啟用這個過濾器代替
-//		filterRegistration = servletContext.addFilter("endcodingFilter", new CharacterEncodingFilter());
-//		filterRegistration.setInitParameter("encoding", "UTF-8");
-//		filterRegistration.setInitParameter("forceEncoding", "true");
-//		filterRegistration.addMappingForUrlPatterns(null, false, "/*");
+//		如果前面方法定義的過濾器因不明原因失效，要啟用這個過濾器代替
+		FilterRegistration.Dynamic encodingFilterRegistration = servletContext.addFilter("encodingFilter", new CharacterEncodingFilter());
+		encodingFilterRegistration.setInitParameter("encoding", "UTF-8");
+		encodingFilterRegistration.setInitParameter("forceEncoding", "true");
+		encodingFilterRegistration.addMappingForUrlPatterns(null, false, "/*");
 
 		servletContext.addListener(new ContextLoaderListener(rootContext));
 	}

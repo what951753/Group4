@@ -2,8 +2,8 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>SpringMVCWebProject</groupId>
-	<artifactId>SpringMVCWebProject</artifactId>
+	<groupId>Art</groupId>
+	<artifactId>Art</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 
@@ -73,8 +73,9 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>5.2.9.RELEASE</version>
 		</dependency>
+		<!-- 換成比較多人用的jstl dependency -->
 		<dependency>
-			<groupId>jstl</groupId>
+			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
@@ -82,6 +83,17 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>4.0.1</version>
+		</dependency>
+		<!-- 上課沒加到的jsp和el -->
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>javax.servlet.jsp-api</artifactId>
+			<version>2.3.3</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.el</groupId>
+			<artifactId>javax.el-api</artifactId>
+			<version>3.0.0</version>
 		</dependency>
 		<!-- tiles -->
 		<dependency>
@@ -130,11 +142,13 @@
 			<artifactId>commons-fileupload</artifactId>
 			<version>1.4</version>
 		</dependency>
+		<!-- XML View (with JAXB2) -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-oxm</artifactId>
 			<version>5.2.9.RELEASE</version>
 		</dependency>
+		<!-- JSON View -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
@@ -166,12 +180,13 @@
 			<artifactId>json-simple</artifactId>
 			<version>1.1.1</version>
 		</dependency>
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<version>1.2.17</version>
-		</dependency>
-<!-- 		初始版本連線用 -->
+		<!-- 舊版Log4j已棄用 -->
+		<!-- <dependency> -->
+		<!-- <groupId>log4j</groupId> -->
+		<!-- <artifactId>log4j</artifactId> -->
+		<!-- <version>1.2.17</version> -->
+		<!-- </dependency> -->
+		<!-- 初始版本連線用 -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-dbcp2</artifactId>
@@ -181,6 +196,64 @@
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-pool2</artifactId>
 			<version>2.4.2</version>
+		</dependency>
+		<!-- PDF View -->
+		<dependency>
+			<groupId>com.lowagie</groupId>
+			<artifactId>itext</artifactId>
+			<version>2.1.7</version>
+		</dependency>
+		<!-- XLS View -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>4.1.2</version>
+		</dependency>
+		<!-- Java mail -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>javax.mail-api</artifactId>
+			<version>1.6.2</version>
+		</dependency>
+		<!-- Spring mail -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>5.2.9.RELEASE</version>
+		</dependency>
+		<!-- QR code -->
+		<dependency>
+			<groupId>com.google.zxing</groupId>
+			<artifactId>core</artifactId>
+			<version>2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.zxing</groupId>
+			<artifactId>javase</artifactId>
+			<version>2.2</version>
+		</dependency>
+	<!-- Java mail相關 -->
+		<dependency>
+			<groupId>javax.activation</groupId>
+			<artifactId>activation</artifactId>
+			<version>1.1.1</version>
+		</dependency>
+		<!-- Log4j 2 -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>2.14.0</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-api</artifactId>
+			<version>2.14.0</version>
+		</dependency>
+		<!-- Log4j SLF4J Binding，消除WebContainer啟動時SLF4J訊息 -->
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
+			<version>2.14.0</version>
 		</dependency>
 	</dependencies>
 

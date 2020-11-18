@@ -14,6 +14,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -34,6 +36,9 @@ public class DataForDB {
 	SessionFactory sessionFactory;
 	
 	@Autowired
+	ServletContext ctx;
+	
+	@Autowired
 	public DataForDB(@Qualifier("sessionFactory") SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
@@ -41,9 +46,22 @@ public class DataForDB {
 	//讀取網路上的json檔為Activity型態
 	public List<Activity> readJsonToAct() {
 		
+//		ctx.getRealPath(path) 回傳真實路徑字串 
+//		vs. ctx.getResourceAsStream(path) 回傳InputStream，回傳值直接丟到InputStreamReader
+		
+//		下面是按系統日期時間產生檔案名稱的範例
+//		//產生一個唯一的名字
+//		String fileName = (String.valueOf(System.currentTimeMillis()));
+//		String path = ctx.getRealPath("/template/WordExportTemplate");
+//		//工程下的完整路徑名
+//		String filepath = path +"\\" + fileName + ".doc";
+//		//寫入文件
+//		Writer out = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(filePath,true), "utf-8"), 10240);
+//		out.write("   ");
+		
 		List<Activity> list = new ArrayList<Activity>();
 //		try (InputStream is = new URL("https://cloud.culture.tw/frontsite/trans/SearchShowAction.do?method=doFindTypeJ&category=all").openStream();
-		try (FileInputStream fis = new FileInputStream("/Users/bill/DataSource/workspace/ArtV2/inputJSON/1.json");
+		try (FileInputStream fis = new FileInputStream(ctx.getRealPath("/WEB-INF/IOFiles/inputJSON/1.json"));
 				InputStreamReader isr = new InputStreamReader(fis, "UTF8");
 				BufferedReader br = new BufferedReader(isr);	
 				) {
@@ -228,7 +246,7 @@ public class DataForDB {
 	public void stringWriteCSV() {
 
 //		FileOutputStream某參數設定true，資料會從覆蓋寫入變成插入
-		try( FileOutputStream fos = new FileOutputStream("/Users/bill/DataSource/workspace/ArtV2/outputCSV/1.csv");
+		try( FileOutputStream fos = new FileOutputStream(ctx.getRealPath("/WEB-INF/IOFiles/outputCSV/1.csv"));
 				OutputStreamWriter osw = new OutputStreamWriter(fos, "BIG5");
 				BufferedWriter bw = new BufferedWriter(osw);
 				){
@@ -250,7 +268,7 @@ public class DataForDB {
 
 		List<Position> list = new ArrayList<Position>();
 //		FileOutputStream某參數設定true，資料會從覆蓋寫入變成插入
-		try( FileInputStream fis = new FileInputStream("/Users/bill/DataSource/workspace/ArtV2/inputCSV/2.csv");
+		try( FileInputStream fis = new FileInputStream(ctx.getRealPath("/WEB-INF/IOFiles/inputCSV/2.csv"));
 				InputStreamReader isr = new InputStreamReader(fis, "BIG5");
 				BufferedReader br = new BufferedReader(isr);
 				){

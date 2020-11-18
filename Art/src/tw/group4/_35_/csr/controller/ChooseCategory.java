@@ -8,14 +8,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import tw.group4._35_.csr.model.ActivityService;
+import tw.group4._35_.csr.model.InterfaceActivityService;
 import tw.group4._35_.geo.model.Activity;
+import tw.group4.util.IdentityFilter;
 
 @Controller
 public class ChooseCategory {
 	
 	@Autowired
-	ActivityService mtService;
+	InterfaceActivityService mtService;
 	
 	@RequestMapping(path = "/35/chooseCategory.ctrl")
 	public String chooseCategory(@RequestParam(name = "activity_category") String actType, Model m) {
@@ -48,7 +49,7 @@ public class ChooseCategory {
 		
 		m.addAttribute("categoryList", list);
 		m.addAttribute("categoryName", str);
-		return "35/csr/listActs";
+		return IdentityFilter.loginID+"35/csr/listActs";
 
 	}
 }

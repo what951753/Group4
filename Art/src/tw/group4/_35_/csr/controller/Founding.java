@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import tw.group4._35_.csr.model.FoundingService;
+import tw.group4.util.IdentityFilter;
 
 @Controller
 public class Founding {
@@ -17,7 +18,7 @@ public class Founding {
 	
 	@RequestMapping(path = "/35/csr", method = RequestMethod.GET)
 	public String csr() {
-		return "35/csr/csr";
+		return IdentityFilter.loginID+"35/csr/csr";
 	}
 	
 	@RequestMapping(path = "/35/founding.ctrl", method = RequestMethod.GET)
@@ -25,7 +26,7 @@ public class Founding {
 		
 		int kidsAmount = fdService.getKidAmount(kidsLocation);
 		m.addAttribute("kidsAmount", kidsAmount);
-		return "35/csr/showKids";
+		return IdentityFilter.loginID+"35/csr/showKids";
 	}
 
 }

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import org.apache.log4j.BasicConfigurator;
+//import org.apache.log4j.BasicConfigurator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,38 +15,42 @@ import net.sf.geographiclib.*;
 import tw.group4._35_.util.OpenStreetMapUtils;
 
 @Service
-public class PositionService{
+public class PositionService implements InterfacePositionService{
 		
-		private PositionDao dao;
+		private InterfacePositionDao dao;
 		
 		public Geodesic geod = Geodesic.WGS84;
 		
 		@Autowired
-		public PositionService(PositionDao dao) {
+		public PositionService(InterfacePositionDao dao) {
 			this.dao = dao;
 		}
 		
+		@Override
 		public List<Position> getPositionBean() {
 			return dao.readAllToPt();
 		}
 		
+		@Override
 		public List<Position> getNoNullPositionBean() {
 			return dao.readNoNullToPt();
 		}
 		
+		@Override
 		public Double getDistance(Double lat1, Double lon1, Double lat2, Double lon2) {
 			GeodesicLine line = geod.InverseLine(lat1, lon1, lat2, lon2, GeodesicMask.DISTANCE_IN | GeodesicMask.LATITUDE | GeodesicMask.LONGITUDE);
 			Double d = line.Distance()/1000; //最後除一千是為了把公尺單位轉換成公里
 			return (double) (Math.round(d*100)/100); //去除多餘小數點
 		}
 		
+		@Override
 		public List<Position> setDistance (String userLocation) {	
 			List<Position> listPt = getPositionBean();
 			Map<String, Double> coords;
 			List<Activity> listAct = selectDistinctToAct();
 			
-			BasicConfigurator.configure();
-			OpenStreetMapUtils.log.info("This is Logger Info");
+//			BasicConfigurator.configure();
+//			OpenStreetMapUtils.log.info("This is Logger Info");
 //			上面兩行初始化log4j設定，這個東西拿來記錄get到的地理資訊，沒初始化會出現以下錯誤
 			//WARN No appenders could be found for logger
 			coords = OpenStreetMapUtils.getInstance().getCoordinates(userLocation);
@@ -74,10 +78,12 @@ public class PositionService{
 			return listPt;
 		}
 		
+		@Override
 		public List<Activity> selectDistinctToAct() {	 
 			return dao.selectDistinctToAct();
 		}
 		
+		@Override
 		public List<Position> recommendList() {	
 			//數表格總數
 			List<Position> list = getNoNullPositionBean();
@@ -120,6 +126,7 @@ public class PositionService{
 			return recommendList;
 		}
 		
+		@Override
 		public int[] produceRandomArray(int count) {
 			
 			Random rd = new Random(); // creating Random object

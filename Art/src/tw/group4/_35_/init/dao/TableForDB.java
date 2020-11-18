@@ -73,50 +73,43 @@ public class TableForDB {
 		}
 	}
 	
-	//創MEMBER表格
-	public void createTableMember() {
+	//創WebsiteMember表格
+	public void createTableWebsiteMember() {
 		
 		try (Connection connection = DataSourceConn.getDataSource().getConnection();) {
 			Statement stmt = connection.createStatement();
 			
-		    String sql = "CREATE TABLE MEMBER"
-					   + "(seqNo INT GENERATED as IDENTITY constraint MEMBER_PK primary key, "
-					   + " memberID			varchar2(20), " 
+		    String sql = "CREATE TABLE WebsiteMember (id NUMBER generated always as identity(start with 1 increment by 1 nocache) primary key not null, "
 					   + " name    			varchar2(32), "
 					   + " password			varchar2(32), " 
 					   + " address 			varchar2(64), "
 					   + " email 			varchar2(64), " 
-					   + " tel  			varchar2(15), "
-					   + " userType			varchar2(10), " 
+					   + " tel  			varchar2(32), "
+					   + " memberType		varchar2(32), " 
+					   + " memberPic		BLOB, " 
+					   + " preference       varchar2(32), "
 					   + " registerTime    	Date, "
-					   + " total_amount     	number(12,2),  "
-					   + " ticket_amount        number(12,2), "
-					   + " product_amount       number(12,2), "
-					   + " class_amount       number(12,2), "
-					   + " reservation_quantity   number(12,2), "
-					   + " artShop_quantity       number(12,2), "
-					   + " class_quantity         number(12,2), "
-					   + " preference           number(6,2) "
+					   + " purchaseLimit    number(12,2)  "
 					   + " )";
 	    
 		    stmt.executeUpdate(sql);
-		    System.out.println("MEMBER表格已建立");
+		    System.out.println("WebsiteMember表格已建立");
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	//刪MEMBER表格
-	public void dropTableMember() {
+	//刪WebsiteMember表格
+	public void dropTableWebsiteMember() {
 		
 		try (Connection connection = DataSourceConn.getDataSource().getConnection();) {
 			Statement stmt = connection.createStatement();
 			
-		    String sql = "DROP TABLE MEMBER CASCADE CONSTRAINTS";
+		    String sql = "DROP TABLE WebsiteMember CASCADE CONSTRAINTS";
 	    
 		    stmt.executeUpdate(sql);
-		    System.out.println("MEMBER表格已刪除");
+		    System.out.println("WebsiteMember表格已刪除");
 
 		} catch (SQLException e) {
 			e.printStackTrace();

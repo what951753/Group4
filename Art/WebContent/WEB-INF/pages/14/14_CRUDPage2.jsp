@@ -6,28 +6,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"
-	integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
-	crossorigin="anonymous"></script>
-<link rel="stylesheet" type="text/css"
-	href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css">
-<script type="text/javascript" charset="utf8"
-	src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
+<!-- 	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css"> -->
 
 <style>
 th {
 	text-align: center;
 }
 </style>
-<script>
- $(document).ready( function () {
-     $('#tableTest').DataTable({
-    	 "language": {
-             "url": "<c:url value='/vendor/Chinese-traditional.json' />"
-    	 }
-         });
-} );
-</script>
+
 <script type="text/javascript">
 
 
@@ -118,27 +104,39 @@ function reconfirmOrder(pid,page){
 				</div>
 				<div class="card-body">
 					<div class="table-responsive">
-						<table id="tableTest" class="display">
+						<table id="myTable" class="table table-bordered" width="100%"
+							cellspacing="0">
 							<thead>
 								<tr>
-									<th>Column 1</th>
-									<th>Column 2</th>
+									<th>商品序號</th>
+									<th>商品名稱</th>
+									<th>售價</th>
+									<th>庫存</th>
+									<th>功能列</th>
 								</tr>
 							</thead>
-							<tbody>
-								<c:forEach var="searchAP" varStatus="stat" items="${pList}">
-									<form>
+							<tfoot>
+								<tr>
+									<th>商品序號</th>
+									<th>商品名稱</th>
+									<th>售價</th>
+									<th>庫存</th>
+									<th>功能列</th>
+								</tr>
+							</tfoot>
+								<tbody>
+							<c:forEach var="searchAP" varStatus="stat" items="${pList}">
 									<tr>
+										<td>${searchAP.productId}</td>
 										<td>${searchAP.productTitle}</td>
-										<td>Row 1 Data 2</td>
+										<td>${searchAP.productPrice}</td>
+										<td>${searchAP.productNum}</td>
+										<td>
+											1
+										</td>
 									</tr>
-									<tr>
-										<td>Row 2 Data 11</td>
-										<td>Row 2 Data 21</td>
-									</tr>
-									</form>
-								</c:forEach>
-							</tbody>
+							</c:forEach>
+								</tbody>
 						</table>
 					</div>
 				</div>
@@ -178,18 +176,20 @@ function reconfirmOrder(pid,page){
 
 
 	<!--   <script src="../vendor/datatables/jquery.dataTables.min.js"></script> -->
-	<script src="https://code.jquery.com/jquery-3.5.1.min.js"
-		integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
-		crossorigin="anonymous"></script>
+<!-- 	<script src="https://code.jquery.com/jquery-3.5.1.min.js" -->
+<!-- 		integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" -->
+<!-- 		crossorigin="anonymous"></script> -->
 
-	<script type="text/javascript" charset="utf8"
-		src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script>
-	<script
-		src="<c:url value='/vendor/datatables/jquery.dataTables.min.js' />"></script>
-	<script
-		src="<c:url value='/vendor/datatables/dataTables.bootstrap4.min.js' />"></script>
+<!-- 	<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.js"></script> -->
+<%-- 	<script src="<c:url value='/vendor/datatables/jquery.dataTables.min.js' />"></script> --%>
+<%-- 	<script src="<c:url value='/vendor/datatables/dataTables.bootstrap4.min.js' />"></script> --%>
 	<script>
+$(document).ready( function () {
+    $('#myTable').DataTable({
 
+    	
+    } );
+} );
 </script>
 </body>
 </html>

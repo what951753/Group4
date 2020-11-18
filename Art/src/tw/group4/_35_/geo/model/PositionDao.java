@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class PositionDao {
+public class PositionDao implements InterfacePositionDao {
 	
 	SessionFactory sessionFactory;
 	
@@ -20,6 +20,7 @@ public class PositionDao {
 		this.sessionFactory = sessionFactory;
 	}
 	
+	@Override
 	public List<Position> readAllToPt() {
 
 		Session session = sessionFactory.getCurrentSession();
@@ -30,6 +31,7 @@ public class PositionDao {
 		return list;
 	}
 	
+	@Override
 	public List<Position> readNoNullToPt() {
 		Session session = sessionFactory.getCurrentSession();
 		
@@ -39,6 +41,7 @@ public class PositionDao {
 		return list;
 	}
 	
+	@Override
 	public List<Activity> selectDistinctToAct() {	 
 		Session session = sessionFactory.getCurrentSession();
 		

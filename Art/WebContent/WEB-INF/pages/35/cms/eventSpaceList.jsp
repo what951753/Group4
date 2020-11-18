@@ -13,7 +13,7 @@
 		<h1 align="center">目前開放租借的場地如下</h1>
 	</div>
 	<div class="back" align="right">
-		<form action="<c:url value='/index.jsp'/> " method="get">
+		<form action="<c:url value='/index.html'/> " method="get">
 			<div class="submitButton">
 				<input type="submit" class="" name="submit" value="返回後台管理系統首頁">
 			</div>
@@ -34,9 +34,10 @@
 	<div class="select" align="center">
 		<form action="<c:url value='/35/select.ctrl'/> " method="get">
 			<div class="submitButton">
-				<label>輸入場地名稱查詢</label> <input type="text" name="select" value="">
-				<input type="submit" name="submit" value="送出"> <input
-					type="reset" name="reset" value="清除">
+				<label>輸入場地名稱查詢</label> 
+				<input type="text" name="select" value="">
+				<input type="submit" name="submit" value="送出"> 
+				<input type="reset" name="reset" value="清除">
 			</div>
 		</form>
 	</div>
@@ -102,7 +103,7 @@
 							</form>
 						</td>
 						<td class="delete">
-							<form action="<c:url value='/35/delete.ctrl'/> " method="get">
+							<form action="<c:url value='/35/delete.ctrl'/> " method="GET">
 								<div class="submitButton">
 									<input type="hidden" name="name" value="${list.name}">
 									<input type="submit" name="submit" value="刪除">

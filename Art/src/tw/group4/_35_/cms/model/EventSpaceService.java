@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class EventSpaceService implements InterfaceEventSpaceService {
 	
-	private EventSpaceDao dao;
+	private InterfaceEventSpaceDao dao;
 	
 	@Autowired
-	public EventSpaceService(EventSpaceDao dao) {		
+	public EventSpaceService(InterfaceEventSpaceDao dao) {		
 		this.dao = dao;
 	}
 	

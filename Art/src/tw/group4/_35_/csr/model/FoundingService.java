@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.log4j.BasicConfigurator;
+//import org.apache.log4j.BasicConfigurator;
 import org.springframework.stereotype.Service;
 
 import net.sf.geographiclib.Geodesic;
@@ -35,8 +35,8 @@ public class FoundingService {
 	
 	public int evaluateHowFar (String kidsLocation) {
 		Map<String, Double> coords;
-		BasicConfigurator.configure();
-		OpenStreetMapUtils.log.info("This is Logger Info");
+//		BasicConfigurator.configure();
+//		OpenStreetMapUtils.log.info("This is Logger Info");
 //		上面兩行初始化log4j設定，這個東西拿來記錄get到的地理資訊，沒初始化會出現以下錯誤
 		//WARN No appenders could be found for logger
 		coords = OpenStreetMapUtils.getInstance().getCoordinates(kidsLocation);

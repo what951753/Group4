@@ -5,7 +5,7 @@ import tw.group4._35_.init.dao.TableForDB;
 
 public class CreateTableInsertDataService {
 	
-	public static void main(String[] args) {
+	public void execute35() {
 		
 		new CreateTableInsertDataService().executeOrder();
 		
@@ -23,8 +23,8 @@ public class CreateTableInsertDataService {
 		tableForDB.createTableActivity();
 		tableForDB.dropTablePosition();
 		tableForDB.createTablePosition();
-		tableForDB.dropTableMember();
-		tableForDB.createTableMember();
+		tableForDB.dropTableWebsiteMember();
+		tableForDB.createTableWebsiteMember();
 		tableForDB.dropTableBURI();
 		tableForDB.createTableBURI();
 		tableForDB.dropTableBUR();
@@ -45,6 +45,8 @@ public class CreateTableInsertDataService {
 		
 //		EventSpace表格插入資料
 		dataForDB.esWriteDB(); //Hibernate練習始祖
+//		WebsiteMember表格插入資料
+		dataForDB.wmWriteDB(); //Hibernate練習始祖
 	}
 
 }

@@ -23,6 +23,9 @@
  	<input type="number" name="APNUM" required="required" value="${ap.productNum}" ></p>
  	</div>
  	<div>
+ 	
+ 	</div>
+ 	<div>
  	<p>描述</p>
  	<textarea name="APDES" class="cls" id="" cols="100" rows="10" >
  	${ap.productDes}

@@ -9,14 +9,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import tw.group4._35_.geo.model.InterfacePositionService;
 import tw.group4._35_.geo.model.Position;
-import tw.group4._35_.geo.model.PositionService;
+import tw.group4.util.IdentityFilter;
 
 @Controller
 public class FindNear {
 	
 	@Autowired
-	PositionService ptService;
+	InterfacePositionService ptService;
 	
 	@RequestMapping(path = "/35/findNear.ctrl", method = RequestMethod.GET)
     public String findNear(@RequestParam(name = "userLocation") String userLocation, Model m) {
@@ -24,7 +25,7 @@ public class FindNear {
 		List<Position> list = ptService.setDistance(userLocation);//傳使用者地點進去service計算和活動距離
 		m.addAttribute("userLocation", userLocation);
 		m.addAttribute("nearActList", list);
-		return "35/geo/nearAct";
+		return IdentityFilter.loginID+"35/geo/nearAct";
 	}
 
 }

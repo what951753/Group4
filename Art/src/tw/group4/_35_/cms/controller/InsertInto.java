@@ -10,18 +10,18 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import tw.group4._35_.cms.model.EventSpace;
-import tw.group4._35_.cms.model.EventSpaceService;
 import tw.group4._35_.cms.model.InterfaceEventSpaceService;
+import tw.group4.util.IdentityFilter;
 
 @Controller
 public class InsertInto {
 	
 	@Autowired
-	private EventSpaceService esService;
+	private InterfaceEventSpaceService esService;
 	
 	@RequestMapping(path = "/35/addData", method = RequestMethod.GET)
 	public String addData() {
-		return "35/cms/addData";
+		return IdentityFilter.loginID+"35/cms/addData";
 	}
 	
 	@RequestMapping(path = "/35/insertInto.ctrl", method = RequestMethod.GET)
@@ -79,7 +79,7 @@ public class InsertInto {
 			m.addAttribute("eventSpace", insertResult);
 		}
 		
-		return "35/cms/addDataResult";
+		return IdentityFilter.loginID+"35/cms/addDataResult";
 	}
 
 }

@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface InterfaceEventSpaceService {
 
-	public List<EventSpace> select(String name);
+	List<EventSpace> select(String name);
 
 	List<EventSpace> selectAll();
 

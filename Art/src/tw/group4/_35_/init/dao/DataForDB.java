@@ -1,7 +1,9 @@
 package tw.group4._35_.init.dao;
 
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -9,10 +11,15 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
+import java.sql.Blob;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.imageio.ImageIO;
+import javax.sql.rowset.serial.SerialBlob;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -25,6 +32,8 @@ import com.google.gson.reflect.TypeToken;
 import tw.group4._35_.cms.model.EventSpace;
 import tw.group4._35_.geo.model.Activity;
 import tw.group4._35_.geo.model.Position;
+import tw.group4._35_.login.model.WebsiteMember;
+import tw.group4._35_.util.GlobalService;
 import tw.group4.util.HibernateUtilNoWeb;
 
 public class DataForDB {
@@ -33,8 +42,8 @@ public class DataForDB {
 	public List<Activity> readJsonToAct() {
 		
 		List<Activity> list = new ArrayList<Activity>();
-//		try (InputStream is = new URL("https://cloud.culture.tw/frontsite/trans/SearchShowAction.do?method=doFindTypeJ&category=all").openStream();
-		try (FileInputStream fis = new FileInputStream("inputJSON/1.json");
+//		try (InputStream fis = new URL("https://cloud.culture.tw/frontsite/trans/SearchShowAction.do?method=doFindTypeJ&category=all").openStream();
+		try (FileInputStream fis = new FileInputStream("IOFiles/inputJSON/1.json");
 				InputStreamReader isr = new InputStreamReader(fis, "UTF8");
 				BufferedReader br = new BufferedReader(isr);	
 				) {
@@ -239,7 +248,7 @@ public class DataForDB {
 	public void stringWriteCSV() {
 
 //		FileOutputStream某參數設定true，資料會從覆蓋寫入變成插入
-		try( FileOutputStream fos = new FileOutputStream("outputCSV/1.csv");
+		try( FileOutputStream fos = new FileOutputStream("IOFiles/outputCSV/1.csv");
 				OutputStreamWriter osw = new OutputStreamWriter(fos, "BIG5");
 				BufferedWriter bw = new BufferedWriter(osw);
 				){
@@ -261,7 +270,7 @@ public class DataForDB {
 
 		List<Position> list = new ArrayList<Position>();
 //		FileOutputStream某參數設定true，資料會從覆蓋寫入變成插入
-		try( FileInputStream fis = new FileInputStream("inputCSV/2.csv");
+		try( FileInputStream fis = new FileInputStream("IOFiles/inputCSV/2.csv");
 				InputStreamReader isr = new InputStreamReader(fis, "BIG5");
 				BufferedReader br = new BufferedReader(isr);
 				){
@@ -312,6 +321,7 @@ public class DataForDB {
 		
 	}
 	
+//	塞入場地資訊
 	public void esWriteDB() {
 		
 		List<EventSpace> list = new ArrayList<EventSpace>();
@@ -373,6 +383,79 @@ public class DataForDB {
 //		HibernateUtilNoWeb.closeSessionFactory();		
 
 		System.out.println("已插入EventSpace資料列");
+	}
+	
+//	塞入預設的幾組帳密
+	public void wmWriteDB() {
+		
+//		註冊時間
+		LocalDate now = LocalDate.now();
+//		塞入預設使用者圖片
+		
+		Blob blob1 = null;
+		Blob blob2 = null;
+		try {
+//			先輸入為BufferedImage (image)
+			FileInputStream fis1 = new FileInputStream("IOFiles/inputJPG/group4.JPG");
+			FileInputStream fis2 = new FileInputStream("IOFiles/inputJPG/bill.JPG");
+			BufferedImage image1 = ImageIO.read(fis1);
+			BufferedImage image2 = ImageIO.read(fis2);
+//			再把BufferedImage轉為ByteArrayOutputStream (baos)
+			ByteArrayOutputStream baos1 = new ByteArrayOutputStream();
+			ImageIO.write(image1, "jpg", baos1);
+			ByteArrayOutputStream baos2 = new ByteArrayOutputStream();
+			ImageIO.write(image2, "jpg", baos2);
+//			ByteArrayOutputStream轉ByteArray (ba)
+			byte[] ba1 = baos1.toByteArray();
+			byte[] ba2 = baos2.toByteArray();
+// 			convert Byte array to Blob using SerialBlob() method
+			blob1 = new SerialBlob(ba1);
+			blob2 = new SerialBlob(ba2);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+//		加密預設密碼oracle
+		String password = GlobalService.getMD5Endocing(
+				GlobalService.encryptString("oracle"));
+		
+		List<WebsiteMember> list = new ArrayList<WebsiteMember>();
+		WebsiteMember wm1 = new WebsiteMember("admin", password, "凱達格蘭大道一號", "group4@gmail.com", "0988588168", "admin", blob1, "art", now, 100000.0);
+		WebsiteMember wm2 = new WebsiteMember("member", password, "凱達格蘭大道二號", "bill@gmail.com", "0966588168", "user", blob2, "photo", now, 10000.0);
+
+		list.add(wm1);
+		list.add(wm2);
+		
+		SessionFactory factory = HibernateUtilNoWeb.getSessionFactory();
+		Session session = factory.getCurrentSession();
+		Transaction tx = session.beginTransaction();
+		System.out.println("Transaction Begin.");
+		
+		int counter = 0;
+		try {
+			for (WebsiteMember item: list) {
+				
+				WebsiteMember bean = new WebsiteMember(item.getName(), item.getPassword(), item.getAddress(), item.getEmail(), item.getTel(), item.getMemberType(), item.getMemberPic(), item.getPreference(), item.getRegisterTime(), item.getPurchaseLimit());
+				session.save(bean);
+				counter++;
+				
+				if(counter%50==0) {
+					session.flush();
+					session.clear();
+				}
+			}	
+			tx.commit();
+			System.out.println("Transaction Commit.");
+		} catch (Exception e) {
+			tx.rollback();
+			System.out.println("Transaction Rollback.");
+			e.printStackTrace();
+		}finally {
+			System.out.println("Session Closed.");
+		}
+		
+//		HibernateUtilNoWeb.closeSessionFactory();		
+		
+		System.out.println("已插入WebsiteMember資料列");
 	}
 
 }

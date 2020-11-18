@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import tw.group4._35_.geo.model.Activity;
 
 @Repository
-public class ActivityDao {
+public class ActivityDao implements InterfaceActivityDao {
 	
 	SessionFactory sessionFactory;
 	
@@ -22,6 +22,7 @@ public class ActivityDao {
 	}
 
 	//按藝文類別選取所有資訊
+	@Override
 	public List<Activity> selectDBtoActbyCat(int typeCode) {
 		Session session = sessionFactory.getCurrentSession();
 		
@@ -33,6 +34,7 @@ public class ActivityDao {
 	}
 	
 	//選取所有資訊
+	@Override
 	public List<Activity> selectDBtoAct() {	 
 		Session session = sessionFactory.getCurrentSession();
 		

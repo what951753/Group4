@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import tw.group4._35_.cms.model.EventSpace;
-import tw.group4._35_.cms.model.EventSpaceService;
 import tw.group4._35_.cms.model.InterfaceEventSpaceService;
+import tw.group4.util.IdentityFilter;
 
 @Controller
 public class Update {
 	
 	@Autowired
-	EventSpaceService esService;
+	InterfaceEventSpaceService esService;
 	
 	@RequestMapping(path = "/35/editEventSpace", method = RequestMethod.GET)
 	public String editEventSpace(
@@ -54,7 +54,7 @@ public class Update {
 		list.add(contactInfo);
 		m.addAttribute("list", list);
 		
-		return "35/cms/editEventSpace";
+		return IdentityFilter.loginID+"35/cms/editEventSpace";
 	}
 	
 	@RequestMapping(path = "/35/update.ctrl", method = RequestMethod.GET)
@@ -113,6 +113,6 @@ public class Update {
 			m.addAttribute("updateResult", "更新失敗");
 		}
 		
-		return "35/cms/editEventSpaceResult";
+		return IdentityFilter.loginID+"35/cms/editEventSpaceResult";
 	}
 }

@@ -7,14 +7,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import tw.group4._35_.cms.model.EventSpaceService;
 import tw.group4._35_.cms.model.InterfaceEventSpaceService;
 
 @Controller
 public class Delete {
 	
 	@Autowired
-	EventSpaceService esService;
+	InterfaceEventSpaceService esService;
 	
 	@RequestMapping(path = "/35/delete.ctrl", method = RequestMethod.GET)
 	public String delete(@RequestParam(name = "name")String name, Model m) {
@@ -27,6 +26,6 @@ public class Delete {
 			m.addAttribute("deleteResult", "刪除失敗");
 		}
 		
-		return "redirect:/35/selectAllAfterDelete.ctrl";
+		return "redirect:/35/selectAll.ctrl";
 	}
 }
